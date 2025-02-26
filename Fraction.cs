@@ -24,8 +24,17 @@ class Fraction
             Console.WriteLine($"Ошибка: {e.Message}");
         }
     }
+    public void updateFloor()
+    {
+        this.floor += ( this.numerator / this.denominator );
+    }
     public int getFloor(){
         return this.floor;
+    }
+    public int toInt()
+    {
+        this.floor += ( this.numerator / this.denominator );
+        return floor;
     }
     public int getNumerator()
     {
@@ -70,6 +79,40 @@ class Fraction
     public static Fraction operator / (Fraction f1, Fraction f2)
     {
         return new Fraction (f1.numerator * f2.denominator, f1.denominator * f2.numerator);
+    }
+    public static Fraction operator + (Fraction f, int i)
+    {
+        if ( i != 0 ) f.floor += i;
+        return f;
+    }
+    public static Fraction operator - (Fraction f, int i)
+    {
+        return new Fraction (f.numerator - i * f.denominator, f.denominator);
+    }
+    public static Fraction operator * (Fraction f, int i)
+    {
+        return new Fraction (f.numerator * i, f.denominator);
+    }
+    public static Fraction operator / (Fraction f, int i)
+    {
+        return new Fraction (f.numerator, f.denominator  * i);
+    }
+    public static Fraction operator + (int i, Fraction f)
+    {
+        if ( i != 0 ) f.floor += i;
+        return f;
+    }
+    public static Fraction operator - (int i, Fraction f)
+    {
+        return new Fraction (i * f.denominator - f.numerator, f.denominator);
+    }
+    public static Fraction operator * (int i, Fraction f)
+    {
+        return new Fraction (f.numerator * i, f.denominator);
+    }
+    public static Fraction operator / (int i, Fraction f)
+    {
+        return new Fraction (f.denominator  * i , f.numerator);
     }
 };
 
